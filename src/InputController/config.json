@@ -1,0 +1,30 @@
+{
+    "keyboard": {
+        "keydown": {
+            "a": "game:start:left",
+            "d": "game:start:right",
+            "ArrowLeft": "game:start:left",
+            "ArrowRight": "game:start:right",
+            " ": "game:start:fire",
+            "k": "game:start:fire",
+            "Escape": "game:menu"
+        },
+        "keyup": {
+            "a": "game:stop:left",
+            "d": "game:stop:right",
+            "ArrowLeft": "game:stop:left",
+            "ArrowRight": "game:stop:right",
+            " ": "game:stop:fire",
+            "k": "game:stop:fire",
+            "Escape": null
+        }
+    },
+    "mouse": {
+        "mousemove": {
+            "left": "game:absolute:left",
+            "right": "game:absolute:right"
+        },
+        "mousedown": "game:start:fire",
+        "mouseup": "game:stop:fire"
+    }
+}
