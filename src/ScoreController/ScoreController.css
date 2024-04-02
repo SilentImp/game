@@ -1,0 +1,12 @@
+.score-controller {
+  position: fixed;
+  inset: 20px;
+  margin: auto;
+  width: max-content;
+  max-width: max-content;
+  color: #fff;
+  pointer-events: none;
+
+  font-family: monospace;
+  font-size: 2rem;
+}

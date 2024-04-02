@@ -1,20 +1,26 @@
+import RAPIER from '@dimforge/rapier2d';
+import Bullet from '../SceneController/Bullet/Bullet';
+import Asteroid from '../SceneController/Asteroid/Asteroid';
+import Satellite from '../SceneController/Satellite/Satellite';
+
 class PhisicsController {
-    static #ammo;
+    world;
+    #collisionHandler;
 
-    constructor() {
-        this.#init();
+    constructor({
+        collisionHandler 
+    }) {
+        this.#collisionHandler = collisionHandler;
+        const gravity = new RAPIER.Vector2(0, 0);
+        this.world = new RAPIER.World(gravity); 
     }
 
-    #init = async () => {
-        PhisicsController.#ammo = await Ammo();
-        const collisionConfiguration = new PhisicsController.#ammo.btDefaultCollisionConfiguration();
-        const dispatcher = new PhisicsController.#ammo.btCollisionDispatcher( collisionConfiguration );
-        const broadphase = new PhisicsController.#ammo.btDbvtBroadphase();
-        const solver = new PhisicsController.#ammo.btSequentialImpulseConstraintSolver();
-        const physicsWorld = new PhisicsController.#ammo.btDiscreteDynamicsWorld( dispatcher, broadphase, solver, collisionConfiguration );
-        physicsWorld.setGravity( new PhisicsController.#ammo.btVector3( 0, 0, 0 ) );
-
+    update = () => {
+        let eventQueue = new RAPIER.EventQueue(true);
+        this.world.step(eventQueue);
+        eventQueue.drainCollisionEvents(this.#collisionHandler);
     }
+
 }
 
 export default PhisicsController;
